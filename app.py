@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, render_template, request, redirect, url_for, session, flash, Response
 from utils import auth, database
 import os, json
 
@@ -64,11 +64,28 @@ def register():
             flash('Registration error: Username is already in use.')
     return render_template('register.html')
 
+@app.route('/find_friends', methods=['GET', 'POST'])
+def find_friends():
+    if auth.logged_in():
+        if request.method == 'POST':
+            place = request.form.get('search_places')
+            print(place)
+            #users = database.get_users(place)
+            users = ['Lisa', 'Christina']
+            return render_template('find_friends.html',
+                                   place = place,
+                                   users = users)
+    else:
+        flash('Access error. You are not logged in.')
+        return redirect('index')            
 
-#index.html
-#login.html
-#register.html
-#profile.html
+@app.route('/search.js')
+def jsfile():
+    json_data = open('data.json').read()
+    data = json.loads(json_data)
+    return Response(render_template("search.js",
+                                     data = json.dumps(data) ),
+                        mimetype="text/javascript")
 
 if __name__ == '__main__':
     app.debug = True

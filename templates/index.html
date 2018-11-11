@@ -4,13 +4,32 @@
 {% endblock %}
 
 {% block title %}
-Journey 42
+Journey42
 {% endblock %}
 
 {% block content %}
-
+{% if logged_in() %}
 <div class="container">
+  <form action="/find_friends" method="POST" name="search_places" class="search_places">
+    <div class="autocomplete">
+      <div class="row">
+	<div class="col-sm-6">
+	  <input id="place_search" name="place_search" class="form-control" type="text" placeholder="Your next destination..." aria-label="Search" autocomplete="off" required/>
+	</div>
+	<div class="col-sm-6">
+	  <button type="Submit" class="btn btn-info" style="width:150px" name="search" id="search">Find a Friend</button>
+	</div>
+	
+      </div>
+      
+    </div>
+  </form>
+{% endif %}
   <img class="d-block w-100" src="{{ url_for('static', filename='img/map.jpg') }}" style="width: 720px;">
 </div>
 
+{% endblock %}
+
+{% block customjs %}
+<script type="text/javascript" src="/search.js"> </script>
 {% endblock %}

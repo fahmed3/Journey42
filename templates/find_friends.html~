@@ -1,0 +1,12 @@
+{% extends 'frame.html' %}
+
+{% block title %}
+Find Friends
+{% endblock %}
+
+<h3>People who also want to visit {{place}}</h3>
+<ul>
+  {% for user in users %}
+  <li>{{user}}</li>
+  {% endblock %}
+</ul>

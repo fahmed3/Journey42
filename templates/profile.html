@@ -4,6 +4,18 @@
 Login
 {% endblock %}
 
+{% block customcss %}
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+        width: 100%;
+      }
+
+    </style>
+{% endblock %}
+
 {% block activenav %}
 {% if logged_in() %}
 <li class="nav-item">
@@ -20,11 +32,15 @@ Login
       <img class="d-block w-100" src="{{ url_for('static', filename='img/profile_pic.jpg') }}">
     </div>
     
-    <div class="col-10">
+    <div class="col-5">
       <h3> Norah D. </h3>
       <h5> Current Location: </h5> <p> Baltimore, Maryland, USA </p>
       <h5> Favorited Places: </h5> <p> New York, USA | Los Angeles, USA | Paris, France </p>
       <h5> Places Visited: </h5> <p> Tokyo, Japan | Shanghai, China | Seattle, USA</p>
+    </div>
+    <div class="col-5">
+      <h3> Favorited Places </h3>
+      <div id="map"></div>
     </div>
   </div>
   <div class = "row">
@@ -35,4 +51,65 @@ Login
 </div>
 
 
+{% endblock %}
+
+{% block customjs %}
+    <script>
+
+var map, infoWindow;
+function initMap() {
+  var uluru = {lat: 40.52, lng: 34.34}
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 1,
+    center: uluru
+  });
+    var locations= [
+      ["Los Angeles, USA", 34.03, -118.14],
+      ["New York, USA", 40.7128,-74.0060],
+      ["Paris, France",48.8566,2.3522],
+        ];
+var marker, i;
+  for (i =0; i < locations.length; i++) {
+    var location = locations[i];
+    var marker = new google.maps.Marker({
+    position: {lat: location[1], lng: location[2]},
+    map:map,
+    title: location[0]
+  });
+     }
+  infoWindow = new google.maps.InfoWindow;
+// Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+            infoWindow.setPosition(pos);
+            infoWindow.setContent('Location found.');
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+      }
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }
+// NOTE: This uses cross-domain XHR, and may not work on older browsers.
+  // map.data.loadGeoJson(
+  //   'https://storage.googleapis.com/mapsdevsite/json/google.json');
+  //   }
+</script>
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAuboe80sfCd4vVCNfVWV0gZcWxUA3KZZ4&callback=initMap">
+</script>
 {% endblock %}
