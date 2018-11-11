@@ -6,11 +6,22 @@ Find Friends
 
 {% block content %}
 <div class = "container">
-  <h3>People who also want to visit this place:</h3>
-  <ul>
+  <h3>Here are some users who also want to visit this place:</h3>
     {% for user in users %}
-    <li>{{user}}</li>
+    <div class="card" style="width: 25rem;">
+      <div class="card-body">
+	<div class = "row">
+	  <div class="col-6">
+	    <img class="d-block w-100" src="{{ url_for('static', filename='img/profile_pic.jpg') }}">
+	  </div>
+	  <div class="col-6">
+	    <h5 class="card-title">{{user}}</h5>
+	    <p class="card-text">Favorited Places: Chicago, USA | Greenbelt, Maryland</p>
+	    <a href="#" class="btn btn-info">Request Friend</a>
+	  </div>
+	</div>
+      </div>
+    </div><br>
     {% endfor %}
-  </ul>
 </div>
 {% endblock %}
