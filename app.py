@@ -68,12 +68,10 @@ def register():
 def find_friends():
     if auth.logged_in():
         if request.method == 'POST':
-            place = request.form.get('search_places')
-            print(place)
+            #place = request.form.get('search_places')
             #users = database.get_users(place)
-            users = ['Lisa', 'Christina']
+            users = ['Lisa', 'Christina'] #hardcoded in, database doesn't exist
             return render_template('find_friends.html',
-                                   place = place,
                                    users = users)
     else:
         flash('Access error. You are not logged in.')
