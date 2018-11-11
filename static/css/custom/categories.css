@@ -1,0 +1,40 @@
+body {
+    padding-top: 66px;
+}
+
+.container {
+    max-width: 1200px;
+}
+
+.panel-heading .panel-title {
+    text-align: center;
+}
+
+.panel-body .btn:not(.btn-block) {
+    width: 240px !important;
+    height: 100px !important;
+    margin-bottom: 10px !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+    font-weight: bolder;
+}
+
+.container .row {
+    margin-left: none;
+    margin-right: none;
+    margin: auto !important;
+}
+
+.container .row .col-md-12 {
+    text-align: center;
+}
+
+#b-difficulty {
+    margin-bottom: 10px;
+}
+
+/* Font Size For Button Text */
+
+.panel-footer {
+    line-height: inherit !important;
+}

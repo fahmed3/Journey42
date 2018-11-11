@@ -1,0 +1,16 @@
+{% extends 'frame.html' %}
+
+{% block customcss %}
+{% endblock %}
+
+{% block title %}
+Journey 42
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <img class="d-block w-100" src="{{ url_for('static', filename='img/map.jpg') }}" style="width: 720px;">
+</div>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+body {
+    padding-top: 5rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+#flashed_messages {
+    margin: auto;
+    width: 50%;
+    padding-top: 13px;
+}

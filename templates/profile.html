@@ -1,0 +1,31 @@
+{% extends 'frame.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block activenav %}
+{% if logged_in() %}
+<li class="nav-item">
+    <a class="nav-link" href="{{ url_for('profile') }}">Profile</a>
+</li>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <img class="d-block w-100" src="{{ url_for('static', filename='img/profile_pic.jpg') }}">
+    </div>
+    
+    <div class="col-9">
+      <h3> {{name}} </h3>
+    </div>
+    
+  </div>
+</div>
+
+
+{% endblock %}

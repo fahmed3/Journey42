@@ -1,0 +1,20 @@
+.ans-choice, .test-choice {
+    max-width: 1110px;
+    margin: auto;
+}
+
+.panel-heading h4,
+.panel-body {
+    text-align: center;
+}
+
+#myProgress{
+    width: 100%;
+    background-color: blue;
+}
+
+#myBar{
+    width: 0%;
+    height: 30px;
+    background-color: gray;
+}
